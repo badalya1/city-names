@@ -13,7 +13,7 @@ export class CityController {
       res.json(cities);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: "Failed to fetch cities" });
+      res.status(500).json({ message: "Failed to fetch cities" });
     }
   };
 
@@ -24,11 +24,11 @@ export class CityController {
       if (city) {
         res.json(city);
       } else {
-        res.status(404).json({ error: "City not found" });
+        res.status(404).json({ message: "City not found" });
       }
     } catch (error) {
       console.error(error);
-      res.status(400).json({ error: "Failed to fetch city" });
+      res.status(400).json({ message: "Failed to fetch city" });
     }
   };
 
@@ -38,7 +38,7 @@ export class CityController {
       res.status(201).json(city);
     } catch (error) {
       console.error(error);
-      res.status(400).json({ error: "Failed to create city" });
+      res.status(400).json({ message: "Failed to create city" });
     }
   };
 
@@ -48,11 +48,11 @@ export class CityController {
       if (city) {
         res.json(city);
       } else {
-        res.status(404).json({ error: "City not found" });
+        res.status(404).json({ message: "City not found" });
       }
     } catch (error) {
       console.error(error);
-      res.status(400).json({ error: "Failed to update city" });
+      res.status(400).json({ message: "Failed to update city" });
     }
   };
 
@@ -62,11 +62,11 @@ export class CityController {
       if (success) {
         res.status(204).send();
       } else {
-        res.status(404).json({ error: "City not found" });
+        res.status(404).json({ message: "City not found" });
       }
     } catch (error) {
       console.error(error);
-      res.status(400).json({ error: "Failed to delete city" });
+      res.status(400).json({ message: "Failed to delete city" });
     }
   };
 }

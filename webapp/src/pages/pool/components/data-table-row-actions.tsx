@@ -12,6 +12,8 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useDeleteCity } from "@/api/cities.api";
+import { City } from "@/api/types/api.types";
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
@@ -21,7 +23,9 @@ export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const task = row.original;
+
+  const { mutate } = useDeleteCity();
+  const task = row.original as City;
 
   return (
     <DropdownMenu>
@@ -37,7 +41,7 @@ export function DataTableRowActions<TData>({
       <DropdownMenuContent align="end" className="w-[160px]">
         <DropdownMenuItem>Edit</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={() => mutate(task._id)}>
           Delete
           <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
         </DropdownMenuItem>

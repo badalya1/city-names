@@ -1,6 +1,7 @@
 import "reflect-metadata";
 import express, { json, urlencoded } from "express";
 import mongoose from "mongoose";
+import cors from "cors";
 import { Container } from "inversify";
 import { CityController } from "./controllers/city.controller";
 import { CityListController } from "./controllers/list.controller";
@@ -32,6 +33,7 @@ export class App {
   }
 
   private setupMiddleware(): void {
+    this.app.use(cors());
     this.app.use(json());
     this.app.use(urlencoded({ extended: true }));
   }

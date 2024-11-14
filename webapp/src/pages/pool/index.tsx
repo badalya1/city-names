@@ -1,144 +1,143 @@
 import { columns } from "./components/columns";
 import { DataTable } from "./components/data-table";
+import { useCities } from "@/api/cities.api";
 
-export type City = {
-  id: string;
-  name: string;
-  foundingDate: string;
-};
 // Simulate a database read for tasks.
-function getCities() {
-  return [
-    {
-      id: "1",
-      name: "New York",
-      foundingDate: "1624",
-    },
-    {
-      id: "2",
-      name: "Los Angeles",
-      foundingDate: "1781",
-    },
-    {
-      id: "3",
-      name: "Chicago",
-      foundingDate: "1833",
-    },
-    {
-      id: "4",
-      name: "Houston",
-      foundingDate: "1836",
-    },
-    {
-      id: "5",
-      name: "Phoenix",
-      foundingDate: "1881",
-    },
-    {
-      id: "6",
-      name: "Philadelphia",
-      foundingDate: "1682",
-    },
-    {
-      id: "7",
-      name: "San Antonio",
-      foundingDate: "1718",
-    },
-    {
-      id: "8",
-      name: "San Diego",
-      foundingDate: "1769",
-    },
-    {
-      id: "9",
-      name: "Dallas",
-      foundingDate: "1841",
-    },
-    {
-      id: "10",
-      name: "San Jose",
-      foundingDate: "1777",
-    },
-    {
-      id: "8",
-      name: "San Diego",
-      foundingDate: "1769",
-    },
-    {
-      id: "9",
-      name: "Dallas",
-      foundingDate: "1841",
-    },
-    {
-      id: "10",
-      name: "San Jose",
-      foundingDate: "1777",
-    },
-    {
-      id: "8",
-      name: "San Diego",
-      foundingDate: "1769",
-    },
-    {
-      id: "9",
-      name: "Dallas",
-      foundingDate: "1841",
-    },
-    {
-      id: "10",
-      name: "San Jose",
-      foundingDate: "1777",
-    },
-    {
-      id: "8",
-      name: "San Diego",
-      foundingDate: "1769",
-    },
-    {
-      id: "9",
-      name: "Dallas",
-      foundingDate: "1841",
-    },
-    {
-      id: "10",
-      name: "San Jose",
-      foundingDate: "1777",
-    },
-    {
-      id: "8",
-      name: "San Diego",
-      foundingDate: "1769",
-    },
-    {
-      id: "9",
-      name: "Dallas",
-      foundingDate: "1841",
-    },
-    {
-      id: "10",
-      name: "San Jose",
-      foundingDate: "1777",
-    },
-    {
-      id: "8",
-      name: "San Diego",
-      foundingDate: "1769",
-    },
-    {
-      id: "9",
-      name: "Dallas",
-      foundingDate: "1841",
-    },
-    {
-      id: "10",
-      name: "San Jose",
-      foundingDate: "1777",
-    },
-  ];
-}
+// function getCities() {
+//   return [
+//     {
+//       id: "1",
+//       name: "New York",
+//       foundingDate: "1624",
+//     },
+//     {
+//       id: "2",
+//       name: "Los Angeles",
+//       foundingDate: "1781",
+//     },
+//     {
+//       id: "3",
+//       name: "Chicago",
+//       foundingDate: "1833",
+//     },
+//     {
+//       id: "4",
+//       name: "Houston",
+//       foundingDate: "1836",
+//     },
+//     {
+//       id: "5",
+//       name: "Phoenix",
+//       foundingDate: "1881",
+//     },
+//     {
+//       id: "6",
+//       name: "Philadelphia",
+//       foundingDate: "1682",
+//     },
+//     {
+//       id: "7",
+//       name: "San Antonio",
+//       foundingDate: "1718",
+//     },
+//     {
+//       id: "8",
+//       name: "San Diego",
+//       foundingDate: "1769",
+//     },
+//     {
+//       id: "9",
+//       name: "Dallas",
+//       foundingDate: "1841",
+//     },
+//     {
+//       id: "10",
+//       name: "San Jose",
+//       foundingDate: "1777",
+//     },
+//     {
+//       id: "8",
+//       name: "San Diego",
+//       foundingDate: "1769",
+//     },
+//     {
+//       id: "9",
+//       name: "Dallas",
+//       foundingDate: "1841",
+//     },
+//     {
+//       id: "10",
+//       name: "San Jose",
+//       foundingDate: "1777",
+//     },
+//     {
+//       id: "8",
+//       name: "San Diego",
+//       foundingDate: "1769",
+//     },
+//     {
+//       id: "9",
+//       name: "Dallas",
+//       foundingDate: "1841",
+//     },
+//     {
+//       id: "10",
+//       name: "San Jose",
+//       foundingDate: "1777",
+//     },
+//     {
+//       id: "8",
+//       name: "San Diego",
+//       foundingDate: "1769",
+//     },
+//     {
+//       id: "9",
+//       name: "Dallas",
+//       foundingDate: "1841",
+//     },
+//     {
+//       id: "10",
+//       name: "San Jose",
+//       foundingDate: "1777",
+//     },
+//     {
+//       id: "8",
+//       name: "San Diego",
+//       foundingDate: "1769",
+//     },
+//     {
+//       id: "9",
+//       name: "Dallas",
+//       foundingDate: "1841",
+//     },
+//     {
+//       id: "10",
+//       name: "San Jose",
+//       foundingDate: "1777",
+//     },
+//     {
+//       id: "8",
+//       name: "San Diego",
+//       foundingDate: "1769",
+//     },
+//     {
+//       id: "9",
+//       name: "Dallas",
+//       foundingDate: "1841",
+//     },
+//     {
+//       id: "10",
+//       name: "San Jose",
+//       foundingDate: "1777",
+//     },
+//   ];
+// }
 
 export default function CityPoolPage() {
-  const cities = getCities();
+  const { data, error, isLoading } = useCities();
+
+  if (isLoading || data == undefined) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
 
   return (
     <>
@@ -151,7 +150,7 @@ export default function CityPoolPage() {
             </p>
           </div>
         </div>
-        <DataTable data={cities} columns={columns} />
+        <DataTable data={data} columns={columns} />
       </div>
     </>
   );
