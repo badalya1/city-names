@@ -1,5 +1,6 @@
 import { useAllLists } from "@/api/lists.api";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 
 export default function CityListsPage() {
   const { data, error, isLoading } = useAllLists();
@@ -24,7 +25,7 @@ export default function CityListsPage() {
 
         <div className="flex flex-col gap-4">
           {data.map((list) => (
-            <a href={`/list/${list._id}`} key={list._id}>
+            <Link to={`/list/${list._id}`} key={list._id}>
               <Card className="hover:shadow-lg transition-shadow duration-300 cursor-pointer hover:bg-secondary">
                 <CardHeader>
                   <CardTitle className="flex items-center">
@@ -46,7 +47,7 @@ export default function CityListsPage() {
                   </p>
                 </CardContent>
               </Card>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

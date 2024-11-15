@@ -25,15 +25,21 @@ const router = createBrowserRouter(
   [
     {
       path: "/",
-      element: <PoolList />,
-    },
-    {
-      path: "/lists",
-      element: <CityListsPage />,
-    },
-    {
-      path: "/list/:id",
-      element: <CityListPage />,
+      element: <Layout />,
+      children: [
+        {
+          path: "",
+          element: <PoolList />,
+        },
+        {
+          path: "/lists",
+          element: <CityListsPage />,
+        },
+        {
+          path: "/list/:id",
+          element: <CityListPage />,
+        },
+      ],
     },
   ],
   {
@@ -50,14 +56,12 @@ const router = createBrowserRouter(
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <Layout>
-        <RouterProvider
-          router={router}
-          future={{
-            v7_startTransition: true,
-          }}
-        />
-      </Layout>
+      <RouterProvider
+        router={router}
+        future={{
+          v7_startTransition: true,
+        }}
+      />
       <Toaster />
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
