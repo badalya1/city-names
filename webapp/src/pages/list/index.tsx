@@ -16,8 +16,14 @@ export default function CityListPage() {
   const { id } = useParams<{ id: string }>();
   const { data, isLoading, isError, error } = useCityListById(id ?? "");
 
-  if (isLoading || data == undefined) return <div>Loading...</div>;
-  if (isError) return <div>Error: {error.message}</div>;
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) {
+    if (error.response?.status === 404) {
+      return <div>Not Found</div>;
+    }
+    return <div>Error: Something went wrong</div>;
+  }
+  if (!data) return <div>City List not found</div>;
 
   return (
     <div className="container mx-auto p-4 space-y-6">
