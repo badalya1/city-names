@@ -14,22 +14,38 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 // Create a client
 export const queryClient = new QueryClient();
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <PoolList />,
+    },
+    {
+      path: "/lists",
+      element: <CityListsPage />,
+    },
+  ],
   {
-    path: "/",
-    element: <PoolList />,
-  },
-  {
-    path: "/lists",
-    element: <CityListsPage />,
-  },
-]);
+    future: {
+      v7_fetcherPersist: true,
+      v7_partialHydration: true,
+      v7_skipActionErrorRevalidation: true,
+      v7_normalizeFormMethod: true,
+      v7_relativeSplatPath: true,
+    },
+  }
+);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <Layout>
-        <RouterProvider router={router} />
+        <RouterProvider
+          router={router}
+          future={{
+            v7_startTransition: true,
+          }}
+        />
       </Layout>
       <Toaster />
       <ReactQueryDevtools initialIsOpen={false} />

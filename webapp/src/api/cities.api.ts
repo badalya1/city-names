@@ -41,8 +41,27 @@ export const useCreateCity = (): UseMutationResult<
 > => {
   return useMutation({
     mutationFn: async (cityData) => {
+      console.log(cityData);
       const { data } = await apiClient.post<City>("/cities", cityData);
       return data;
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({
+        queryKey: ["cities"],
+      });
+      toast({
+        variant: "success",
+        title: `Successfully created ${data.name}`,
+        description: "The city you created has been added to the list.",
+      });
+    },
+    onError: (err) => {
+      console.log(err);
+      toast({
+        variant: "error",
+        title: "Failed to delete city",
+        description: err.response?.data.message,
+      });
     },
   });
 };
@@ -54,6 +73,24 @@ export const useUpdateCity = (
     mutationFn: async (cityData) => {
       const { data } = await apiClient.put<City>(`/cities/${id}`, cityData);
       return data;
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({
+        queryKey: ["cities"],
+      });
+      toast({
+        variant: "success",
+        title: `Successfully updated ${data.name}`,
+        description: "The city you updated has been updated in the list.",
+      });
+    },
+    onError: (err) => {
+      console.log(err);
+      toast({
+        variant: "error",
+        title: "Failed to update city",
+        description: err.response?.data.message,
+      });
     },
   });
 };

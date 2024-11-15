@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useDeleteCity } from "@/api/cities.api";
 import { City } from "@/api/types/api.types";
+import useTableModal from "./hooks/table-modal";
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
@@ -22,7 +23,7 @@ interface DataTableRowActionsProps<TData> {
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { openEditCityModal } = useTableModal();
 
   const { mutate } = useDeleteCity();
   const task = row.original as City;
@@ -39,7 +40,9 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem>Edit</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => openEditCityModal(task)}>
+          Edit
+        </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={() => mutate(task._id)}>
           Delete

@@ -3,17 +3,17 @@
 export interface City {
   _id: string;
   name: string;
-  foundingDate: string;
+  foundedYear: string;
 }
 
 export interface CreateCityInput {
   name: string;
-  foundingDate: string;
+  foundedYear: string;
 }
 
 export interface UpdateCityInput {
   name?: string;
-  foundingDate?: string;
+  foundedYear?: string;
 }
 
 //City lists
