@@ -7,12 +7,19 @@ import "./index.css";
 import PoolList from "./pages/pool";
 import Layout from "./layout.tsx";
 import CityListsPage from "./pages/lists/index.tsx";
+import CityListPage from "./pages/list/index.tsx";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 // Create a client
-export const queryClient = new QueryClient();
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+    },
+  },
+});
 
 const router = createBrowserRouter(
   [
@@ -23,6 +30,10 @@ const router = createBrowserRouter(
     {
       path: "/lists",
       element: <CityListsPage />,
+    },
+    {
+      path: "/list/:id",
+      element: <CityListPage />,
     },
   ],
   {

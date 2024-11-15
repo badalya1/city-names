@@ -20,8 +20,12 @@ export interface UpdateCityInput {
 
 export interface CityList {
   _id: string;
-  name: string;
-  color: string;
+  cities: City[];
+  fullName: string;
+  labelColor: string;
+  ownerId: string;
+  shortName: string;
+  updatedAt: string;
 }
 
 export interface CreateCityListInput {
